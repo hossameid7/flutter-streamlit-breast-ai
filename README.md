@@ -57,22 +57,22 @@ graph TD
     classDef decision fill:#FFCCBC,stroke:#D84315,stroke-width:2px,color:#000;
     classDef output fill:#C8E6C9,stroke:#388E3C,stroke-width:2px,color:#000;
 
-    A([Upload Image <br> JPG, JPEG, PNG]) ::: input --> B[Preprocess for Classification <br> Resize to 224x224, No Norm] ::: process
-    B --> C[Classification Model <br> breast_classification_model.keras] ::: model
-    C --> D([Display Result <br> Type & Probability]) ::: output
+    A(["Upload Image <br> JPG, JPEG, PNG"]):::input --> B["Preprocess for Classification <br> Resize to 224x224, No Norm"]:::process
+    B --> C["Classification Model <br> breast_classification_model.keras"]:::model
+    C --> D(["Display Result <br> Type & Probability"]):::output
     
-    D --> E{Is Tumor Detected? <br> Class: 0, 1, 2} ::: decision
-    E -- Normal (2) --> F([Process Complete]) ::: output
+    D --> E{"Is Tumor Detected? <br> Class: 0, 1, 2"}:::decision
+    E -- Normal (2) --> F(["Process Complete"]):::output
     
-    E -- Benign (0) / Malignant (1) --> G[Prompt for Segmentation <br> 'Run Segmentation' Flag] ::: input
+    E -- Benign (0) / Malignant (1) --> G["Prompt for Segmentation <br> 'Run Segmentation' Flag"]:::input
     
-    G --> H{Segmentation Requested?} ::: decision
+    G --> H{"Segmentation Requested?"}:::decision
     H -- No --> F
     
-    H -- Yes --> I[Preprocess for Segmentation <br> Resize & Normalize] ::: process
-    I --> J[Segmentation Model <br> final_breast_seg_model.keras] ::: model
-    J --> K[Generate Overlay <br> Original + Mask + Heatmap] ::: process
-    K --> L([Display Output Plot <br> 3 Images Side-by-Side]) ::: output
+    H -- Yes --> I["Preprocess for Segmentation <br> Resize & Normalize"]:::process
+    I --> J["Segmentation Model <br> final_breast_seg_model.keras"]:::model
+    J --> K["Generate Overlay <br> Original + Mask + Heatmap"]:::process
+    K --> L(["Display Output Plot <br> 3 Images Side-by-Side"]):::output
 ```
 
 ### 5.2 Mobile Application Flow (Flutter Client)
@@ -84,22 +84,22 @@ graph TD
     classDef screen fill:#E1F5FE,stroke:#0277BD,stroke-width:2px,color:#000;
     classDef aiAction fill:#D1C4E9,stroke:#512DA8,stroke-width:3px,color:#000,font-weight:bold;
 
-    A([Launch Application]) ::: startEnd --> B{Authentication Valid? <br> Firebase Auth} ::: decision
+    A(["Launch Application"]):::startEnd --> B{"Authentication Valid? <br> Firebase Auth"}:::decision
     
     subgraph Identity & Access
-        B -- No --> C[Login / Registration Interface] ::: screen
+        B -- No --> C["Login / Registration Interface"]:::screen
     end
     
-    B -- Yes --> D[Primary Diagnostic Dashboard] ::: screen
+    B -- Yes --> D["Primary Diagnostic Dashboard"]:::screen
     C --> D
     
-    D --> H[User Profile Management] ::: screen
+    D --> H["User Profile Management"]:::screen
     H --> D
     
     subgraph Diagnostic Process
-        D --> E[Image Acquisition <br> Camera / Storage] ::: screen
-        E --> F[Execute AI Analysis <br> Inference API Request] ::: aiAction
-        F --> G([Render Diagnostic Results <br> Classification & Segmentation]) ::: startEnd
+        D --> E["Image Acquisition <br> Camera / Storage"]:::screen
+        E --> F["Execute AI Analysis <br> Inference API Request"]:::aiAction
+        F --> G(["Render Diagnostic Results <br> Classification & Segmentation"]):::startEnd
     end
 ```
 
