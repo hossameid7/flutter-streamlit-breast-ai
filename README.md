@@ -32,6 +32,7 @@ The repository follows standard software engineering practices for AI feature in
 - `/tests/` — Evaluation datasets (`test_images`) and behavioral testing resources.
 - `/pipelines/` — Experimental Jupyter notebooks for model training and baseline evaluation.
 - `/reports/` — Model Registry containing compiled `.keras` and `.tflite` artifacts.
+- `/Notebooks/` — Jupyter notebooks for data analysis, exploration, and model experimentation.
 
 ---
 
