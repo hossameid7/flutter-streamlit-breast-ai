@@ -31,8 +31,28 @@ The repository follows standard software engineering practices for AI feature in
 - `/src/` — Application source code (Flutter mobile application and Python Streamlit server).
 - `/tests/` — Evaluation datasets (`test_images`) and behavioral testing resources.
 - `/pipelines/` — Experimental Jupyter notebooks for model training and baseline evaluation.
-- `/reports/` — Model Registry containing compiled `.keras` and `.tflite` artifacts.
+- `/reports/` — Model Registry containing compiled `.keras` and `.tflite` artifacts (heavy binaries are stored outside Git).
 - `/Notebooks/` — Jupyter notebooks for data analysis, exploration, and model experimentation.
+
+---
+
+## 3.1 Model Artifacts (External Storage)
+
+Due to GitHub size limitations, trained model weights are stored externally and **not committed** to this repository.
+
+- **Google Drive folder with models**:  
+  `https://drive.google.com/drive/folders/1b_76X1dxtyZUJ4Kuqg6MH9oTr7mSUjmA?usp=sharing`
+
+Expected filenames:
+- `breast_classification_model.keras`
+- `final_breast_seg_model.keras`
+
+To run the Streamlit server locally, download these files and place them under:
+
+```text
+src/streamlit/models/breast_classification_model.keras
+src/streamlit/models/final_breast_seg_model.keras
+```
 
 ---
 
@@ -106,31 +126,51 @@ graph TD
 
 ---
 
-## 6. Setup & Installation
+## 6. How to Run the Streamlit App (Server Only)
 
-### Prerequisites
-- [Flutter SDK](https://docs.flutter.dev/get-started/install) (Latest stable release)
+> At this stage the main **product artifact** is the Streamlit inference server. The Flutter app is still in active development.
+
+### 6.1. Prerequisites
 - [Python 3.9+](https://www.python.org/downloads/)
-- [Firebase account](https://firebase.google.com/) structured with an active project
+- `pip` installed
 
-### Installation Steps
+### 6.2. Clone the repository
 
-1. **Clone the repository:**
+1. Clone and enter the project:
    ```bash
    git clone <repository-url>
    cd flutter-streamlit-breast-ai
    ```
 
-2. **Initialize the Analysis Server (Streamlit):**
+### 6.3. Install Python dependencies and run Streamlit
+
+2. Go to the Streamlit folder and install dependencies from `requirements.txt`:
    ```bash
-   cd src/streamlit_server 
-   pip install -r requirements.txt
-   streamlit run app.py
+   cd src/streamlit
+   pip install -r requirements.txt   # install all packages needed by main.py
    ```
 
-3. **Bootstrap the Mobile Client (Flutter):**
+3. Download model files from Google Drive and place them in `src/streamlit/models/` as described above.
+
+4. Run the Streamlit app:
    ```bash
-   cd src/Breast-App-main
-   flutter pub get
-   flutter run
+   streamlit run main.py
    ```
+
+---
+
+## 7. (Optional) Flutter Mobile Client
+
+The Flutter client is under active development. Once ready, it will:
+- Authenticate the user (Firebase).
+- Capture or select ultrasound images.
+- Send images to the Streamlit API.
+- Render classification and segmentation results.
+
+Flutter setup (for future use):
+
+```bash
+cd src/Breast-App-main
+flutter pub get
+flutter run
+```
