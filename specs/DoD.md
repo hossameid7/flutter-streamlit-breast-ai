@@ -21,8 +21,8 @@
 
 **Артефакты (Artifacts):**
 1. Скрипты обучения: `/pipelines/breast-classification.ipynb` и `breast-segmentation.ipynb`.
-2. Веса для API: `breast_classification_model.keras`, `final_breast_seg_model.keras`.
-3. Веса для Edge-устройств: `breast_classification_model.tflite`, `breast_segmentation_model.tflite`.
+2. Веса для API: `breast_classification_model.keras`, `final_breast_seg_model.keras` (хранятся вне репозитория Git в артефакт-стораже; ссылка на Google Drive приведена в `README.md`).
+3. Веса для Edge-устройств: `breast_classification_model.tflite`, `breast_segmentation_model.tflite` (также не коммитятся в Git, а версионируются во внешнем хранилище).
 4. Сборка мобильного клиента: `app-release.apk`.
 5. Набор спецификаций: `/specs/PRD.md`, `/specs/Data_Spec.md`, `/specs/DoD.md`.
 
