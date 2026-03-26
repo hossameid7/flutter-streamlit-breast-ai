@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "142422483153",
+    "project_id": "breast-app-3168f",
+    "storage_bucket": "breast-app-3168f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142422483153:android:26ae662706a28b94c6a5f0",
+        "android_client_info": {
+          "package_name": "com.example.breast_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKO4z7DQyS9-AkwpRYQB8EcIr_MyRia9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
