@@ -29,7 +29,7 @@ A comprehensive software solution (mobile application and backend inference serv
 The repository follows standard software engineering practices for AI feature integration:
 - `/specs/` — Product requirements and specifications (PRD, Data Spec, DoD).
 - `/src/` — Application source code (Flutter mobile application and Python Streamlit server).
-- `/tests/` — Evaluation datasets (`test_images`) and behavioral testing resources.
+- `/tests/` — Behavioral test images (one sample per class: Benign, Malignant, Normal).
 - `/pipelines/` — Experimental Jupyter notebooks for model training and baseline evaluation.
 - `/reports/` — Model Registry containing compiled `.keras` and `.tflite` artifacts (heavy binaries are stored outside Git).
 - `/Notebooks/` — Jupyter notebooks for data analysis, exploration, and model experimentation.
@@ -126,15 +126,32 @@ graph TD
 
 ---
 
-## 6. How to Run the Streamlit App (Server Only)
+## 6. Quick Start (Makefile)
+
+The project includes a `Makefile` for one-command reproducibility:
+
+| Command | Description |
+|---------|-------------|
+| `make install` | Install Python dependencies for Streamlit server |
+| `make train` | Execute training notebooks (classification + segmentation) |
+| `make eval` | Run behavioral evaluation on test images in `/tests/` |
+| `make serve` | Start the Streamlit inference server |
+| `make flutter-run` | Build and run the Flutter mobile client |
+| `make clean` | Remove cached / temporary files |
+
+Run `make help` to see all available targets.
+
+---
+
+## 7. How to Run the Streamlit App (Server Only)
 
 > At this stage the main **product artifact** is the Streamlit inference server. The Flutter app is still in active development.
 
-### 6.1. Prerequisites
+### 7.1. Prerequisites
 - [Python 3.9+](https://www.python.org/downloads/)
 - `pip` installed
 
-### 6.2. Clone the repository
+### 7.2. Clone the repository
 
 1. Clone and enter the project:
    ```bash
@@ -142,7 +159,7 @@ graph TD
    cd flutter-streamlit-breast-ai
    ```
 
-### 6.3. Install Python dependencies and run Streamlit
+### 7.3. Install Python dependencies and run Streamlit
 
 2. Go to the Streamlit folder and install dependencies from `requirements.txt`:
    ```bash
@@ -159,7 +176,7 @@ graph TD
 
 ---
 
-## 7. (Optional) Flutter Mobile Client
+## 8. (Optional) Flutter Mobile Client
 
 The Flutter client is under active development. Once ready, it will:
 - Authenticate the user (Firebase).

@@ -27,6 +27,6 @@
 5. Набор спецификаций: `/specs/PRD.md`, `/specs/Data_Spec.md`, `/specs/DoD.md`.
 
 **Тесты (Tests):**
-1. **Behavioral Tests:** Модель протестирована на 15 контрольных снимках (по 5 для benign, malignant, normal) из `/tests/test_images/`.
+1. **Behavioral Tests:** Модель протестирована на 3 контрольных снимках (по 1 для benign, malignant, normal) из `/tests/`.
 2. **Data Validation Tests:** Скрипт проверки отбрасывает файлы неверного формата (например, .txt или поврежденные картинки).
 3. **E2E UI Tests:** Проверка флоу в приложении от экрана входа (Firebase Auth) до получения результатов инференса.
