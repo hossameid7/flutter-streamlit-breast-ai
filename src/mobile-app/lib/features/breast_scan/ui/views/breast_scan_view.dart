@@ -9,6 +9,7 @@ import '../../logic/breast_scan_cubit.dart';
 import '../widgets/breast_image_card.dart';
 import '../widgets/breast_scan_action_buttons.dart';
 import '../widgets/breast_scan_result_section.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class BreastScanView extends StatefulWidget {
   const BreastScanView({super.key});
@@ -42,7 +43,7 @@ class _BreastScanViewState extends State<BreastScanView> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Breast Detection & Segmentation"),
+          title: Text(context.l10n.scanTitle),
           centerTitle: true,
           automaticallyImplyLeading: false,
           actions: [

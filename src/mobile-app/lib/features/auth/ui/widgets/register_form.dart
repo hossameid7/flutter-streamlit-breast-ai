@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../logic/auth_cubit.dart';
 import '../../logic/auth_state.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -38,9 +39,9 @@ class _RegisterFormState extends State<RegisterForm> {
             Expanded(
               child: TextField(
                 controller: _firstNameController,
-                decoration: const InputDecoration(
-                  labelText: 'First Name',
-                  prefixIcon: Icon(Icons.person_outline),
+                decoration: InputDecoration(
+                  labelText: context.l10n.firstName,
+                  prefixIcon: const Icon(Icons.person_outline),
                 ),
               ),
             ),
@@ -48,7 +49,7 @@ class _RegisterFormState extends State<RegisterForm> {
             Expanded(
               child: TextField(
                 controller: _lastNameController,
-                decoration: const InputDecoration(labelText: 'Last Name'),
+                decoration: InputDecoration(labelText: context.l10n.lastName),
               ),
             ),
           ],
@@ -57,18 +58,18 @@ class _RegisterFormState extends State<RegisterForm> {
         TextField(
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            labelText: 'Email',
-            prefixIcon: Icon(Icons.email_outlined),
+          decoration: InputDecoration(
+            labelText: context.l10n.email,
+            prefixIcon: const Icon(Icons.email_outlined),
           ),
         ),
         SizedBox(height: 20.h),
         TextField(
           controller: _phoneController,
           keyboardType: TextInputType.phone,
-          decoration: const InputDecoration(
-            labelText: 'Phone Number',
-            prefixIcon: Icon(Icons.phone_outlined),
+          decoration: InputDecoration(
+            labelText: context.l10n.phone,
+            prefixIcon: const Icon(Icons.phone_outlined),
           ),
         ),
         SizedBox(height: 20.h),
@@ -76,7 +77,7 @@ class _RegisterFormState extends State<RegisterForm> {
           controller: _passwordController,
           obscureText: !_isPasswordVisible,
           decoration: InputDecoration(
-            labelText: 'Password',
+            labelText: context.l10n.password,
             prefixIcon: const Icon(Icons.lock_outline),
             suffixIcon: IconButton(
               icon: Icon(
@@ -116,7 +117,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
                     )
-                  : const Text('Create Account'),
+                  : Text(context.l10n.createAccount),
             );
           },
         ),

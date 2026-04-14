@@ -5,6 +5,7 @@ import '../../logic/profile_cubit.dart';
 import '../../logic/profile_state.dart';
 import '../../../../core/models/user_model.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class EditProfileView extends StatefulWidget {
   final UserModel user;
@@ -38,12 +39,12 @@ class _EditProfileViewState extends State<EditProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit Profile'), elevation: 0),
+      appBar: AppBar(title: Text(context.l10n.editProfile), elevation: 0),
       body: BlocListener<ProfileCubit, ProfileState>(
         listener: (context, state) {
           if (state is ProfileLoaded && state is! ProfileUpdating) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Profile updated successfully')),
+              SnackBar(content: Text(context.l10n.profileUpdatedSuccess)),
             );
             Navigator.pop(context);
           } else if (state is ProfileError) {
@@ -60,30 +61,30 @@ class _EditProfileViewState extends State<EditProfileView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildSectionTitle('Personal Information'),
+              _buildSectionTitle(context.l10n.personalInformation),
               SizedBox(height: 20.h),
               TextField(
                 controller: _firstNameController,
-                decoration: const InputDecoration(
-                  labelText: 'First Name',
-                  prefixIcon: Icon(Icons.person_outline),
+                decoration: InputDecoration(
+                  labelText: context.l10n.firstName,
+                  prefixIcon: const Icon(Icons.person_outline),
                 ),
               ),
               SizedBox(height: 16.h),
               TextField(
                 controller: _lastNameController,
-                decoration: const InputDecoration(
-                  labelText: 'Last Name',
-                  prefixIcon: Icon(Icons.person_outline),
+                decoration: InputDecoration(
+                  labelText: context.l10n.lastName,
+                  prefixIcon: const Icon(Icons.person_outline),
                 ),
               ),
               SizedBox(height: 16.h),
               TextField(
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  labelText: 'Phone Number',
-                  prefixIcon: Icon(Icons.phone_outlined),
+                decoration: InputDecoration(
+                  labelText: context.l10n.phone,
+                  prefixIcon: const Icon(Icons.phone_outlined),
                 ),
               ),
               SizedBox(height: 40.h),
@@ -115,7 +116,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                               strokeWidth: 2,
                             ),
                           )
-                        : const Text('Save Changes'),
+                        : Text(context.l10n.saveChanges),
                   );
                 },
               ),

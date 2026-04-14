@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:breast_app/core/routes/routes.dart';
 import '../../logic/auth_cubit.dart';
 import '../../logic/auth_state.dart';
 import '../widgets/register_form.dart';
 import '../widgets/account_redirection_row.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -33,7 +35,11 @@ class RegisterView extends StatelessWidget {
               ),
             );
           } else if (state is AuthAuthenticated) {
-            Navigator.pop(context);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.breastScan,
+              (route) => false,
+            );
           }
         },
         child: Container(
@@ -57,7 +63,7 @@ class RegisterView extends StatelessWidget {
                 children: [
                   SizedBox(height: 10.h),
                   Text(
-                    'Create Account',
+                    context.l10n.createAccount,
                     style: TextStyle(
                       fontSize: 28.sp,
                       fontWeight: FontWeight.bold,
@@ -66,16 +72,20 @@ class RegisterView extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    'Fill in your details to get started',
+                    context.l10n.registerSubtitle,
                     style: TextStyle(fontSize: 16.sp, color: Colors.grey[600]),
                   ),
                   SizedBox(height: 32.h),
                   const RegisterForm(),
                   SizedBox(height: 24.h),
                   AccountRedirectionRow(
-                    text: "Already have an account? ",
-                    actionText: 'Login',
-                    onTap: () => Navigator.pop(context),
+                    text: context.l10n.alreadyHaveAccount,
+                    actionText: context.l10n.loginButton,
+                    onTap: () => Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.login,
+                      (route) => false,
+                    ),
                   ),
                   SizedBox(height: 40.h),
                 ],

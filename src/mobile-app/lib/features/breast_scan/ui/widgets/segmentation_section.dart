@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../logic/breast_scan_cubit.dart';
 import 'segmentation_overlay.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class SegmentationSection extends StatelessWidget {
   final BreastScanState state;
@@ -32,7 +33,11 @@ class SegmentationSection extends StatelessWidget {
             icon: Icon(
               isLoading ? Icons.hourglass_empty : Icons.layers_outlined,
             ),
-            label: Text(isLoading ? "Segmenting..." : "Run Segmentation"),
+            label: Text(
+              isLoading
+                  ? context.l10n.segmenting
+                  : context.l10n.runSegmentation,
+            ),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
               foregroundColor: AppTheme.pinkColor,
@@ -42,12 +47,15 @@ class SegmentationSection extends StatelessWidget {
           ),
         ],
         if (isSuccess && state.mask != null && state.image != null)
-          _buildSegmentationOverlay(state),
+          _buildSegmentationOverlay(context, state),
       ],
     );
   }
 
-  Widget _buildSegmentationOverlay(BreastScanState state) {
+  Widget _buildSegmentationOverlay(
+    BuildContext context,
+    BreastScanState state,
+  ) {
     return Column(
       children: [
         Row(
@@ -59,9 +67,9 @@ class SegmentationSection extends StatelessWidget {
               size: 20.sp,
             ),
             SizedBox(width: 8.w),
-            const Text(
-              "Segmentation Result",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              context.l10n.segmentationResult,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
         ),

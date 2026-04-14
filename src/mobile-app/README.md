@@ -1,4 +1,4 @@
-# Breast App 
+# Breast App 🩺
 
 A high-performance Flutter mobile application designed for **Breast Cancer Detection and Segmentation**. Leveraging cutting-edge AI technologies and a modern tech stack, this application provides users with a seamless and reliable way to analyze medical images and manage their profiles.
 
@@ -23,6 +23,12 @@ A high-performance Flutter mobile application designed for **Breast Cancer Detec
   - Harmonious color palettes and modern typography.
   - Intuitive navigation and interactive components.
 
+- **🌍 Multi-Language Support (i18n)**
+  - Fully localized in **English**, **Arabic**, and **Russian**.
+  - Dynamic language switching without app restart.
+  - Automatic RTL (Right-to-Left) support for Arabic.
+  - Persistence of language preference across sessions.
+
 ## 🛠️ Tech Stack
 
 - **Framework**: [Flutter](https://flutter.dev/)
@@ -41,7 +47,8 @@ lib/
 │   ├── di/           # Dependency injection (GetIt)
 │   ├── navigation/   # Context-less navigation service
 │   ├── routes/       # Route naming and generation
-│   └── theme/        # Global app theme and styles
+│   ├── theme/        # Global app theme and styles
+│   └── localization/ # i18n logic, ARB files, and generated code
 ├── features/         # Modular feature-based structure
 │   ├── auth/         # Authentication & Profile management
 │   │   ├── data/     # Repositories & Models (Firestore/Auth)
@@ -63,6 +70,9 @@ lib/
 ### Setup Instructions
 
 1. **Clone the repository**
+   ```bash
+   git clone https://github.com/AliGad17611/Breast-App.git
+   ```
 
 2. **Install dependencies**
    ```bash
@@ -74,12 +84,18 @@ lib/
    - Place your `GoogleService-Info.plist` in `ios/Runner/`.
    - Or use the FlutterFire CLI: `flutterfire configure`.
 
-4. **TFLite Models**
+4. **Localization Files**  
+   Generate the required localization code:
+   ```bash
+   flutter gen-l10n
+   ```
+
+5. **TFLite Models**
    - Ensure the models are located in `assets/models/`:
      - `breast_classification_model.tflite`
      - `breast_segmentation_model.tflite`
 
-5. **Run the App**
+6. **Run the App**
    ```bash
    flutter run
    ```

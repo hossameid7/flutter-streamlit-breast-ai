@@ -6,6 +6,7 @@ import '../../logic/breast_scan_cubit.dart';
 import 'classification_button.dart';
 import 'detection_result_card.dart';
 import 'segmentation_section.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class BreastScanResultSection extends StatelessWidget {
   final File? image;
@@ -29,7 +30,7 @@ class BreastScanResultSection extends StatelessWidget {
           return Column(
             children: [
               Text(
-                "Error: ${state.errorMessage}",
+                context.l10n.statusError(state.errorMessage ?? ""),
                 style: const TextStyle(color: Colors.red),
               ),
               SizedBox(height: 10.h),

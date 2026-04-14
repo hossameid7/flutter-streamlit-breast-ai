@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../logic/auth_cubit.dart';
 import '../../logic/auth_state.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -30,9 +31,9 @@ class _LoginFormState extends State<LoginForm> {
         TextField(
           controller: _emailController,
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            labelText: 'Email',
-            prefixIcon: Icon(Icons.email_outlined),
+          decoration: InputDecoration(
+            labelText: context.l10n.email,
+            prefixIcon: const Icon(Icons.email_outlined),
           ),
         ),
         SizedBox(height: 20.h),
@@ -40,7 +41,7 @@ class _LoginFormState extends State<LoginForm> {
           controller: _passwordController,
           obscureText: !_isPasswordVisible,
           decoration: InputDecoration(
-            labelText: 'Password',
+            labelText: context.l10n.password,
             prefixIcon: const Icon(Icons.lock_outline),
             suffixIcon: IconButton(
               icon: Icon(
@@ -63,7 +64,7 @@ class _LoginFormState extends State<LoginForm> {
               // Handle forgot password
             },
             child: Text(
-              'Forgot Password?',
+              context.l10n.forgotPassword,
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.w600,
@@ -92,7 +93,7 @@ class _LoginFormState extends State<LoginForm> {
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
                     )
-                  : const Text('Login'),
+                  : Text(context.l10n.loginButton),
             );
           },
         ),

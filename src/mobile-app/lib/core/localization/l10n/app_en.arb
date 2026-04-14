@@ -1,0 +1,62 @@
+{
+  "@@locale": "en",
+  "appName": "Breast App",
+  "welcomeBack": "Welcome Back",
+  "signInSubtitle": "Sign in to your account",
+  "dontHaveAccount": "Don't have an account? ",
+  "register": "Register",
+  "scanTitle": "Breast Detection & Segmentation",
+  "gallery": "Gallery",
+  "camera": "Camera",
+  "runClassification": "Run Classification",
+  "analysing": "Analysing...",
+  "statusError": "Error: {message}",
+  "@statusError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "classification": "Classification",
+  "unknown": "Unknown",
+  "confidence": "Confidence: {value}%",
+  "@confidence": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "benign": "Benign",
+  "malignant": "Malignant",
+  "normal": "Normal",
+  "profile": "Profile",
+  "language": "Language",
+  "selectLanguage": "Select Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "russian": "Russian",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "logout": "Logout",
+  "editProfile": "Edit Profile",
+  "forgotPassword": "Forgot Password?",
+  "loginButton": "Login",
+  "createAccount": "Create Account",
+  "registerSubtitle": "Fill in your details to get started",
+  "alreadyHaveAccount": "Already have an account? ",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phone": "Phone Number",
+  "myProfile": "My Profile",
+  "noProfileData": "No profile data available",
+  "profileUpdatedSuccess": "Profile updated successfully",
+  "personalInformation": "Personal Information",
+  "saveChanges": "Save Changes",
+  "uploadImagePrompt": "Upload a breast scan image",
+  "segmenting": "Segmenting...",
+  "runSegmentation": "Run Segmentation",
+  "segmentationResult": "Segmentation Result"
+}

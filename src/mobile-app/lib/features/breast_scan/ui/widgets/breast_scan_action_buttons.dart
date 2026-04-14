@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class BreastScanActionButtons extends StatelessWidget {
   final Function(ImageSource) onPickImage;
@@ -15,7 +16,7 @@ class BreastScanActionButtons extends StatelessWidget {
           child: ElevatedButton.icon(
             onPressed: () => onPickImage(ImageSource.gallery),
             icon: const Icon(Icons.photo_library),
-            label: const Text("Gallery"),
+            label: Text(context.l10n.gallery),
           ),
         ),
         SizedBox(width: 10.w),
@@ -23,7 +24,7 @@ class BreastScanActionButtons extends StatelessWidget {
           child: ElevatedButton.icon(
             onPressed: () => onPickImage(ImageSource.camera),
             icon: const Icon(Icons.camera_alt),
-            label: const Text("Camera"),
+            label: Text(context.l10n.camera),
           ),
         ),
       ],

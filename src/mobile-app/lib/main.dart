@@ -13,6 +13,9 @@ import 'package:breast_app/core/theme/app_theme.dart';
 
 import 'package:breast_app/features/auth/data/repo/auth_repo.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:breast_app/core/localization/generated/app_localizations.dart';
+import 'package:breast_app/core/localization/logic/locale_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,17 +39,29 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => sl<AuthCubit>()),
             BlocProvider(create: (context) => sl<ProfileCubit>()),
             BlocProvider(create: (context) => sl<BreastScanCubit>()),
+            BlocProvider(create: (context) => sl<LocaleCubit>()),
           ],
-
-          child: MaterialApp(
-            title: 'Breast App',
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.themeData,
-            navigatorKey: sl<NavigationService>().navigatorKey,
-            onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: sl<AuthRepo>().getCurrentUser() != null
-                ? Routes.breastScan
-                : Routes.login,
+          child: BlocBuilder<LocaleCubit, Locale>(
+            builder: (context, locale) {
+              return MaterialApp(
+                title: 'Breast App',
+                debugShowCheckedModeBanner: false,
+                theme: AppTheme.themeData,
+                locale: locale,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: AppLocalizations.supportedLocales,
+                navigatorKey: sl<NavigationService>().navigatorKey,
+                onGenerateRoute: AppRouter.generateRoute,
+                initialRoute: sl<AuthRepo>().getCurrentUser() != null
+                    ? Routes.breastScan
+                    : Routes.login,
+              );
+            },
           ),
         );
       },

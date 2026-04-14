@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../logic/breast_scan_cubit.dart';
+import '../../../../core/localization/context_extension.dart';
 
 class DetectionResultCard extends StatelessWidget {
   final BreastScanState state;
@@ -18,6 +19,20 @@ class DetectionResultCard extends StatelessWidget {
     IconData icon = state.predictedClass == 2
         ? Icons.check_circle_outline
         : Icons.warning_amber_outlined;
+
+    String getLocalizedLabel() {
+      if (state.predictedClass == null) return context.l10n.unknown;
+      switch (state.predictedClass) {
+        case 0:
+          return context.l10n.benign;
+        case 1:
+          return context.l10n.malignant;
+        case 2:
+          return context.l10n.normal;
+        default:
+          return context.l10n.unknown;
+      }
+    }
 
     return Container(
       padding: EdgeInsets.all(20.w),
@@ -50,7 +65,7 @@ class DetectionResultCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Classification",
+                  context.l10n.classification,
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
@@ -58,7 +73,7 @@ class DetectionResultCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  state.label ?? 'Unknown',
+                  getLocalizedLabel(),
                   style: TextStyle(
                     fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
@@ -68,7 +83,7 @@ class DetectionResultCard extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  "Confidence: ${((state.probability ?? 0) * 100).toStringAsFixed(2)}%",
+                  context.l10n.confidence(((state.probability ?? 0) * 100).toStringAsFixed(2)),
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,

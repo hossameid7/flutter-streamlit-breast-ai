@@ -10,6 +10,8 @@ import '../../../../core/di/service_locator.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_info_card.dart';
 import '../widgets/profile_error_view.dart';
+import '../../../../core/localization/context_extension.dart';
+import '../../../../core/localization/logic/locale_cubit.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -36,7 +38,7 @@ class _ProfileViewState extends State<ProfileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Profile'),
+        title: Text(context.l10n.myProfile),
         elevation: 0,
         actions: [
           IconButton(
@@ -76,25 +78,45 @@ class _ProfileViewState extends State<ProfileView> {
                     items: [
                       ProfileInfoItem(
                         icon: Icons.person_outline,
-                        label: 'First Name',
+                        label: context.l10n.firstName,
                         value: user.firstName,
                       ),
                       ProfileInfoItem(
                         icon: Icons.person_outline,
-                        label: 'Last Name',
+                        label: context.l10n.lastName,
                         value: user.lastName,
                       ),
                       ProfileInfoItem(
                         icon: Icons.email_outlined,
-                        label: 'Email',
+                        label: context.l10n.email,
                         value: user.email,
                       ),
                       ProfileInfoItem(
                         icon: Icons.phone_outlined,
-                        label: 'Phone',
+                        label: context.l10n.phone,
                         value: user.phone,
                       ),
                     ],
+                  ),
+                  SizedBox(height: 20.h),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.05),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: ListTile(
+                      leading: Icon(Icons.language, color: Theme.of(context).primaryColor),
+                      title: Text(context.l10n.language),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                      onTap: () => _showLanguagePicker(context),
+                    ),
                   ),
                   SizedBox(height: 40.h),
                   ElevatedButton.icon(
@@ -106,15 +128,64 @@ class _ProfileViewState extends State<ProfileView> {
                       );
                     },
                     icon: const Icon(Icons.edit_outlined),
-                    label: const Text('Edit Profile'),
+                    label: Text(context.l10n.editProfile),
                   ),
                 ],
               ),
             );
           }
-          return const Center(child: Text('No profile data available'));
+          return Center(child: Text(context.l10n.noProfileData));
         },
       ),
+    );
+  }
+
+  void _showLanguagePicker(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(16.w),
+                child: Text(
+                  context.l10n.selectLanguage,
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text(context.l10n.english),
+                onTap: () {
+                  context.read<LocaleCubit>().changeLocale(const Locale('en'));
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text(context.l10n.arabic),
+                onTap: () {
+                  context.read<LocaleCubit>().changeLocale(const Locale('ar'));
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text(context.l10n.russian),
+                onTap: () {
+                  context.read<LocaleCubit>().changeLocale(const Locale('ru'));
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

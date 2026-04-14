@@ -9,11 +9,23 @@ import '../../features/breast_scan/data/services/breast_detection_service.dart';
 import '../../features/breast_scan/data/services/breast_segmentation_service.dart';
 import '../../features/breast_scan/logic/breast_scan_cubit.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+import '../localization/locale_service.dart';
+import '../localization/logic/locale_cubit.dart';
+
 import '../navigation/navigation_service.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initServiceLocator() async {
+  // External
+  final sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => sharedPreferences);
+
+  // Localization
+  sl.registerLazySingleton(() => LocaleService(sl()));
+  sl.registerLazySingleton(() => LocaleCubit(sl()));
+
   // Navigation
   sl.registerLazySingleton(() => NavigationService());
 
