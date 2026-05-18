@@ -9,8 +9,8 @@ help: ## Show available commands
 		awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
 # ── Environment ──────────────────────────────
-install: ## Install Python dependencies for Streamlit server
-	pip install -r src/streamlit/requirements.txt
+install: ## Install Python dependencies for Backend API server
+	pip install -r src/backend/requirements.txt
 
 # ── Training Pipelines ───────────────────────
 train: ## Run training notebooks (classification + segmentation)
@@ -22,7 +22,7 @@ eval: ## Evaluate model on test images in /tests/
 	@echo "Running behavioral evaluation on test images..."
 	python -c "\
 	import os, tensorflow as tf, numpy as np;\
-	model = tf.keras.models.load_model('src/streamlit/models/breast_classification_model.keras');\
+	model = tf.keras.models.load_model('src/backend/models/breast_classification_model.keras');\
 	classes = ['Benign', 'Malignant', 'Normal'];\
 	for f in sorted(os.listdir('tests')):\
 	    if not f.endswith('.png'): continue;\
@@ -32,9 +32,8 @@ eval: ## Evaluate model on test images in /tests/
 	    print(f'{f:20s} -> {classes[np.argmax(pred)]:10s} (conf: {np.max(pred):.2%})');\
 	"
 
-# ── Serve ─────────────────────────────────────
-serve: ## Start the Streamlit inference server
-	cd src/streamlit && streamlit run main.py
+serve: ## Start the Backend API server
+	cd src/backend && python main.py
 
 # ── Flutter ───────────────────────────────────
 flutter-run: ## Build and run the Flutter mobile client

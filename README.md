@@ -143,9 +143,9 @@ Run `make help` to see all available targets.
 
 ---
 
-## 7. How to Run the Streamlit App (Server Only)
+## 7. How to Run the Streamlit App (Server & Web Sandbox)
 
-> At this stage the main **product artifact** is the Streamlit inference server. The Flutter app is still in active development.
+> **Deployment Architecture:** The system employs a **Dual-Deployment Architecture**. The **primary target** is **local Edge inference** (on-device TFLite) embedded within the Flutter client to guarantee patient data privacy and offline operational capability. The **Streamlit Server** serves as a vital secondary architecture, functioning as a high-fidelity web-based demonstration sandbox, development playground, and a cloud-based backup API.
 
 ### 7.1. Prerequisites
 - [Python 3.9+](https://www.python.org/downloads/)
@@ -176,15 +176,16 @@ Run `make help` to see all available targets.
 
 ---
 
-## 8. (Optional) Flutter Mobile Client
+## 8. Flutter Mobile Client (Edge Production Target)
 
-The Flutter client is under active development. Once ready, it will:
-- Authenticate the user (Firebase).
-- Capture or select ultrasound images.
-- Send images to the Streamlit API.
-- Render classification and segmentation results.
+The Flutter mobile client is a **fully integrated and functional core production artifact**. It implements **local Edge inference (TFLite)** to perform diagnostic classification and tumor segmentation directly on the user's mobile device.
 
-Flutter setup (for future use):
+### Features:
+- **Local TFLite Inference**: Direct execution of classification (`breast_classification_model.tflite`) and segmentation (`breast_segmentation_model.tflite`) models on-device using GPU acceleration.
+- **Secure Identity & Access**: Integration with Firebase Authentication for doctor profile management.
+- **Firestore Telemetry**: Securely synchronizes clinical feedback and low-confidence prediction events to Firebase for centralized monitoring.
+
+### Setup and Local Execution:
 
 ```bash
 cd src/Breast-App-main

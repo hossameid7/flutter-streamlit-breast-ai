@@ -1,0 +1,4 @@
+[core]
+    analytics = false
+[state]
+    checksum = md5

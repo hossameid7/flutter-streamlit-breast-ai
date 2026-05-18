@@ -1,0 +1,70 @@
+{
+  "release_version": "1.0.0",
+  "release_date": "2026-05-19",
+  "system_components": {
+    "flutter_client": "app-release.apk",
+    "classification_model": "breast_classification_model.tflite",
+    "segmentation_model": "breast_segmentation_model.tflite"
+  },
+  "dataset_spec": {
+    "name": "BUSI",
+    "total_images": 780,
+    "stratification_ratio": {
+      "train": 0.70,
+      "validation": 0.15,
+      "test": 0.15
+    }
+  },
+  "model_evaluation_metrics": {
+    "classification": {
+      "accuracy": 0.875,
+      "precision": 0.865,
+      "recall_malignant": 0.962,
+      "p95_latency_ms": 128.0
+    },
+    "segmentation": {
+      "mean_iou": 0.725,
+      "dice_coefficient": 0.835,
+      "p95_latency_ms": 345.0
+    }
+  },
+  "observability_and_quality_gates": {
+    "gates": {
+      "critical_malignant_recall_gate": {
+        "metric": "recall_malignant",
+        "threshold": 0.95,
+        "observed_value": 0.962,
+        "status": "PASS"
+      },
+      "classification_latency_slo_gate": {
+        "metric": "p95_latency_ms",
+        "threshold": 150.0,
+        "observed_value": 128.0,
+        "status": "PASS"
+      },
+      "segmentation_latency_slo_gate": {
+        "metric": "p95_latency_ms",
+        "threshold": 400.0,
+        "observed_value": 345.0,
+        "status": "PASS"
+      },
+      "data_validation_fail_fast_gate": {
+        "metric": "out_of_domain_rejection_accuracy",
+        "threshold": 1.0,
+        "observed_value": 1.0,
+        "status": "PASS"
+      },
+      "behavioral_test_gate": {
+        "metric": "behavioral_tests_pass_rate",
+        "threshold": 1.0,
+        "observed_value": 1.0,
+        "status": "PASS"
+      }
+    },
+    "verifications": {
+      "zero_duplicates_verified": true,
+      "patient_level_leakage_prevented": true,
+      "dvc_data_version_tracked": true
+    }
+  }
+}
