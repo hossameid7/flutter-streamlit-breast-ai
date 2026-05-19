@@ -1,6 +1,6 @@
-# Dataset Card: Breast Ultrasound Images Dataset (BUSI)
+# Dataset Card: BUSI (Breast Ultrasound Images)
 
-This document provides a comprehensive specifications overview for the **Breast Ultrasound Images (BUSI)** dataset used in the development, training, and evaluation of the Breast Cancer Diagnosis and Tumor Segmentation System.
+This is the main dataset we used for training and evaluating our models. Below are the key details about where it comes from, how it's structured, and the known limitations.
 
 ---
 

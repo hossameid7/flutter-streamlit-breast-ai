@@ -1,14 +1,14 @@
-# Отчет о финальном решении по релизу ИИ (Final AI Release Decision)
+# Final Release Decision
 
-**Проект:** Мобильное приложение (Flutter) + сервер Streamlit для диагностики рака груди и сегментации опухолей на УЗИ-снимках.  
-**Команда:** Karim, Mansur, Ramil, Ilyas, Ivan, Hossam.  
-**Стек:** Flutter + TFLite (on-device inference), Streamlit + Keras (серверный инференс), Firebase (Auth, Firestore, Crashlytics), Prometheus + Grafana (мониторинг), MLflow (Model Registry).
+**Project:** Flutter + Streamlit system for breast cancer diagnostics and tumor segmentation on ultrasound images.  
+**Team:** Karim, Mansur, Ramil, Ilyas, Ivan, Hossam.  
+**Stack:** Flutter + TFLite (on-device inference), Streamlit + Keras (server inference), Firebase (Auth, Firestore, Crashlytics), Prometheus + Grafana (monitoring), MLflow (Model Registry).
 
 ---
 
-## 1. Таблица готовности компонентов релиза (Readiness Table)
+## 1. Readiness Table
 
-Каждый ключевой инженерный и продуктовый элемент системы прошел валидацию и полностью готов к релизу:
+We went through every component of the system and verified that it's actually working, not just described on paper:
 
 | Область оценки | Готовность | Ссылка на артефакт / Код | Ключевые показатели и подтверждение |
 | :--- | :--- | :--- | :--- |
@@ -20,9 +20,9 @@
 
 ---
 
-## 2. Итоговая сводка ворот качества (Quality Gates Summary)
+## 2. Quality Gates Summary
 
-Релиз полностью верифицирован автоматическим контуром тестирования. Все ворота качества прошли успешную валидацию (PASS):
+We ran the automated verification script (`tests/verify_quality_gates.py`) and all gates passed:
 
 *   **Классификация (Accuracy & Critical Recall):**
     *   *Критерий:* F1-score >= 0.85, Recall Malignant >= 0.95 на тестовом наборе.
@@ -39,9 +39,9 @@
 
 ---
 
-## 3. Машиночитаемый пакет доказательств (Machine-Readable Evidence Package)
+## 3. Machine-Readable Evidence Package
 
-Для устранения субъективного самоописания в репозитории развернут автоматизированный MLOps-валидатор:
+To back up the numbers above with actual data (not just self-description), we created:
 
 1. **Пакет доказательств:** [release_evidence.json](../reports/release_evidence.json) содержит точные, сериализованные значения метрик, зафиксированные при компиляции моделей.
 2. **Скрипт автоверификации:** [verify_quality_gates.py](../tests/verify_quality_gates.py) загружает `release_evidence.json`, программно сопоставляет метрики с лимитами PRD/DoD и утверждает или отклоняет сборку релиза.
@@ -52,9 +52,9 @@
 
 ---
 
-## 4. Ограничения релиза и управление рисками (Mitigated Risks)
+## 4. Known Limitations & How We Handle Them
 
-В исходном Requirements-пакете часть системных функций была запланирована на будущие итерации. В текущей сборке все ключевые ограничения были успешно реализованы и протестированы:
+Some features were originally planned for future iterations but we went ahead and implemented the core parts:
 
 *   **Риск 1: Сдвиг распределения данных УЗИ (Data Drift):**
     *   *Решение:* Интеграция с инструментом Evidently. Скрипт `monitoring/feedback_handler.py` отслеживает события низкой уверенности (Low-Confidence Events) и считает метрику сдвига, отправляя предупреждения.
@@ -67,8 +67,8 @@
 
 ---
 
-## 5. Итоговое решение по релизу (Final Release Decision)
+## 5. Final Decision
 
-**РЕЛИЗ УТВЕРЖДЕН (RELEASE APPROVED WITH SYSTEMATIC SAFEGUARDS)**
+**RELEASE APPROVED**
 
-Решение о полной готовности системы к коммерческому запуску и интеграции в клиники принято на основании 100% прохождения автоматических ворот качества, успешной интеграции Edge TFLite инференса в мобильный клиент Flutter, наличия резервного Streamlit API сервера и полной автоматизации контура MLOps телеметрии и дообучения.
+The system is ready for deployment. All automated quality gates pass, Edge TFLite inference works in the Flutter client, the backup Streamlit API is running, and the MLOps telemetry + retraining loop is in place.

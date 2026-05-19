@@ -1,6 +1,6 @@
-# Data Quality & Integrity Report: BUSI Dataset
+# Data Quality Report: BUSI Dataset
 
-This report covers advanced dataset quality metrics, duplicates analysis, data leakage prevention, class imbalance mitigation, and extended validation checks implemented in the **Breast Ultrasound Images (BUSI)** workflow.
+This report documents the quality checks we ran on the BUSI dataset before using it for training. We looked at class imbalance, checked for duplicate images, made sure there's no data leakage between splits, and set up validation rules for incoming images.
 
 ---
 
@@ -79,9 +79,9 @@ This guarantees that each sample in the test and validation splits represents un
 
 ---
 
-## 3. Data Leakage Prevention Strategy
+## 3. Data Leakage Prevention
 
-Data leakage is a critical issue in medical imaging where features or patient data inadvertently cross-contaminate splits, resulting in overly optimistic validation scores.
+Data leakage is a common problem in medical imaging — if images from the same patient end up in both training and test sets, the model memorizes patient-specific features and the test scores look better than they really are.
 
 ### Prevention Architecture
 
@@ -97,9 +97,9 @@ Data leakage is a critical issue in medical imaging where features or patient da
 
 ---
 
-## 4. Extended Quality Checks & Data Contracts
+## 4. Validation Checks During Inference
 
-We enforce strict data validation contracts before any image is passed to the TFLite interpreter. These extended checks prevent "garbage-in, garbage-out" failures:
+Before any image reaches the model, we run a set of quick checks to reject garbage inputs early:
 
 | Quality Check | Technical Contract | Action on Failure | Purpose |
 | :--- | :--- | :--- | :--- |

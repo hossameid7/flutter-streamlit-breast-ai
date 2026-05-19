@@ -1,12 +1,12 @@
-# Data Specification & Workflow Architecture
+# Data Specification & Workflow
 
-This document provides a comprehensive, production-grade specification of the **Data Workflow, Versioning, Splitting, and Validation Contracts** implemented for the Breast Cancer Diagnosis and Tumor Segmentation System.
+This document explains how we handle the data in our project — from the raw BUSI images all the way through versioning, splitting, quality checks, and the validation rules we enforce at inference time.
 
 ---
 
-## 1. Общая схема движения данных (Data Workflow Diagram)
+## 1. Data Workflow Diagram
 
-Процесс обработки данных — от сырого источника до валидационных контрактов во время инференса — регламентирован следующей архитектурой:
+The diagram below shows the full path our data takes — from the Kaggle source to splitting, training, and finally the validation checks during live inference:
 
 ```mermaid
 graph TD

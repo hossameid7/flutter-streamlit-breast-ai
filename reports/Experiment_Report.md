@@ -1,6 +1,6 @@
-# Machine Learning Experimentation & Model Evaluation Report
+# Experiment Report: Model Training & Evaluation
 
-This report presents the scientific evaluation of baseline and candidate models developed for breast cancer classification and tumor segmentation. It documents our experimental setup, tracking mechanisms, evaluation metrics, and champion model selection.
+Here we describe how we trained and compared our models for breast cancer classification and tumor segmentation. We tested a simple baseline against a stronger candidate for each task and picked the one that passed our quality gates.
 
 ---
 
@@ -68,7 +68,7 @@ Pixel-level normalized confusion matrix on the validation set.
 
 ## 4. MLflow & Weights & Biases (W&B) Experiment Tracking
 
-To maintain reproducibility and auditability, training runs are instrumented with **MLflow** for artifact/metric logging and **Weights & Biases (W&B)** for real-time visualization.
+We used **MLflow** to log model artifacts and metrics after each run, and **Weights & Biases** to watch training curves in real time. This way anyone on the team can go back and see exactly which hyperparameters produced which results.
 
 ### A. Logging Configuration Script
 
@@ -138,9 +138,9 @@ Our MLflow Local Registry contains logged metrics for 6 historical runs, enablin
 
 ---
 
-## 5. Champion Model Selection — Formal Justification
+## 5. Champion Model Selection
 
-Based on the quantitative evidence presented above, we formally justify the selection of champion models for production deployment:
+Below is why we chose these particular models to ship:
 
 ### 5.1 Classification Champion: ResNet-50
 
