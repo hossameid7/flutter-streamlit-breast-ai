@@ -1,0 +1,5 @@
+name: BreastResNet50
+version: '2'
+current_stage: Production
+run_id: a3f2c1b0d4e54f7a9b1c2d3e4f5a6b7c
+status: READY

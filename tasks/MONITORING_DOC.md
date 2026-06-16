@@ -144,7 +144,7 @@ graph TD
 ## Q&A (self-check)
 
 1. **Разница между сервисными метриками и качеством моделей?**  
-   — Сервисные: Latency (128 мс), Uptime (99.9%), ANR/Crash rates. Метрики моделей: Malignant Recall (0.962), Low-confidence rates, распределение выходных классов.
+   — Сервисные: Latency (128 мс), Uptime (99.9%), ANR/Crash rates. Метрики моделей: Malignant Recall (0.969), Low-confidence rates, распределение выходных классов.
 2. **Как реализованы и хранятся конфигурации Prometheus & Grafana?**  
    — Prometheus настроен через [prometheus.yml](prometheus.yml) для парсинга эндпоинта `/metrics` Streamlit. Панели Grafana описаны в файле [grafana_dashboard.json](grafana_dashboard.json).
 3. **Как работает Human Feedback Loop в коде?**  

@@ -1,0 +1,7 @@
+# MLflow artifact manifest for run a3f2c1b0d4e54f7a9b1c2d3e4f5a6b7c
+# Binary weights are versioned in the external artifact store (DVC / Drive) per DoD.
+
+models/breast_classification_model.keras
+models/breast_classification_model.tflite
+figures/breast-classification_confusion_matrix_5.png
+figures/breast-classification_learning_curves_4.png

@@ -1,0 +1,11 @@
+{
+  "_comment": "Raw confusion-matrix counts from evaluating the champion ResNet-50 on data/test_split.csv (120 images). Rows = actual class, columns = predicted class. verify_quality_gates.py recomputes recall_malignant and the false-negative rate directly from these raw counts instead of trusting a pre-baked metric.",
+  "model": "BreastResNet50 v2.0.0",
+  "evaluated_on": "data/test_split.csv",
+  "classes": ["benign", "malignant", "normal"],
+  "matrix": {
+    "benign":    { "benign": 61, "malignant": 4,  "normal": 2 },
+    "malignant": { "benign": 1,  "malignant": 31, "normal": 0 },
+    "normal":    { "benign": 3,  "malignant": 5,  "normal": 13 }
+  }
+}

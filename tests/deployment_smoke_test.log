@@ -1,0 +1,19 @@
+[2026-06-16T06:35:44Z] === Deployment Inference-Pipeline Smoke Test ===
+[2026-06-16T06:35:44Z] 
+[1] Input validation contract (fail-fast gates):
+[2026-06-16T06:35:44Z]   PASS  valid 300x300 noisy image accepted
+[2026-06-16T06:35:44Z]   PASS  sub-256px image correctly rejected (resolution gate)
+[2026-06-16T06:35:44Z]   PASS  zero-variance image correctly rejected (variance gate)
+[2026-06-16T06:35:44Z]   PASS  corrupt/non-image input correctly rejected (format gate)
+[2026-06-16T06:35:44Z] 
+[2] Tensor I/O contract (TFLite shapes):
+[2026-06-16T06:35:44Z]   PASS  classification input tensor shape (1, 224, 224, 3) float32
+[2026-06-16T06:35:44Z]   PASS  segmentation input tensor shape (1, 256, 256, 3) float32
+[2026-06-16T06:35:44Z]   INFO  expected classification output (1, 3) (softmax over 3 classes)
+[2026-06-16T06:35:44Z]   INFO  expected segmentation output (1, 256, 256, 1) (per-pixel tumor probability)
+[2026-06-16T06:35:44Z] 
+[3] Live inference (optional, weights-dependent):
+[2026-06-16T06:36:01Z]   PASS  live classification forward pass produced (1, 3)
+[2026-06-16T06:36:01Z] 
+================================================
+[2026-06-16T06:36:01Z] VERDICT: deployment inference contract HOLDS.

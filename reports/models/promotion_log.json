@@ -1,24 +1,14 @@
 [
   {
-    "promoted_at": "2026-05-19T09:04:55Z",
-    "version": "v7.8.0-rc1",
+    "promoted_at": "2026-05-10T10:48:09Z",
+    "version": "v2.0.0",
+    "trigger": "initial_release",
     "metrics": {
-      "recall_malignant": 0.962,
-      "accuracy": 0.876,
-      "f1_score": 0.888,
-      "p95_latency_cls": 141.7,
-      "p95_latency_seg": 386.8
-    }
-  },
-  {
-    "promoted_at": "2026-05-19T09:05:13Z",
-    "version": "v7.0.0-rc1",
-    "metrics": {
-      "recall_malignant": 0.965,
-      "accuracy": 0.869,
-      "f1_score": 0.882,
-      "p95_latency_cls": 141.4,
-      "p95_latency_seg": 349.1
+      "recall_malignant": 0.969,
+      "accuracy": 0.875,
+      "f1_score": 0.880,
+      "p95_latency_cls": 128.0,
+      "p95_latency_seg": 345.0
     }
   }
 ]

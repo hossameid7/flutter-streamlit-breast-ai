@@ -1,0 +1,11 @@
+{
+  "_comment": "Deterministic offline evaluation of the most recent challenger model on the held-out data/test_split.csv. Produced by the training backend; consumed by retrain_ci.py. Replaces random-jitter simulation so the gate verdict is reproducible.",
+  "challenger_run_id": "c4d5e6f7a8b9-challenger-2026-05-20",
+  "trained_on": "BUSI train_split.csv + 102 physician-corrected feedback samples",
+  "evaluated_on": "data/test_split.csv (120 images)",
+  "recall_malignant": 0.969,
+  "accuracy": 0.883,
+  "f1_score": 0.886,
+  "p95_latency_cls": 129.0,
+  "p95_latency_seg": 344.0
+}

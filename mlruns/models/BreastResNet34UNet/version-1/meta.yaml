@@ -1,0 +1,5 @@
+name: BreastResNet34UNet
+version: '1'
+current_stage: Production
+run_id: 1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f
+status: READY

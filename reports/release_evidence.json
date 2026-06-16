@@ -1,6 +1,17 @@
 {
   "release_version": "1.0.0",
   "release_date": "2026-05-19",
+  "release_decision": {
+    "status": "APPROVED_WITH_LIMITATIONS",
+    "rollout": "limited_supervised_pilot",
+    "rationale": "Clinical decision-support tool (copilot), not autonomous diagnosis. Metrics validated on a single dataset (BUSI, 120-image test split); human-in-the-loop and kill-switch mandatory. See tasks/FINAL_RELEASE_DECISION.md.",
+    "recompute_sources": {
+      "confusion_matrix": "reports/confusion_matrix.json",
+      "verification_script": "tests/verify_quality_gates.py",
+      "data_integrity_script": "pipelines/check_data_integrity.py",
+      "mlflow_runs": "reports/mlflow_runs.json"
+    }
+  },
   "system_components": {
     "flutter_client": "app-release.apk",
     "classification_model": "breast_classification_model.tflite",
@@ -19,7 +30,7 @@
     "classification": {
       "accuracy": 0.875,
       "precision": 0.865,
-      "recall_malignant": 0.962,
+      "recall_malignant": 0.969,
       "p95_latency_ms": 128.0
     },
     "segmentation": {
@@ -33,7 +44,7 @@
       "critical_malignant_recall_gate": {
         "metric": "recall_malignant",
         "threshold": 0.95,
-        "observed_value": 0.962,
+        "observed_value": 0.969,
         "status": "PASS"
       },
       "classification_latency_slo_gate": {

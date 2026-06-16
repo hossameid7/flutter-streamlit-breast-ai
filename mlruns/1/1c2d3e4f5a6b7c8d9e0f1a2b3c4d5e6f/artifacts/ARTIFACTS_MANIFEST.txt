@@ -1,0 +1,6 @@
+# MLflow artifact manifest for run 1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f
+# Binary weights are versioned in the external artifact store (DVC / Drive) per DoD.
+
+models/final_breast_seg_model.keras
+models/breast_segmentation_model.tflite
+figures/breast-segmentation_learning_curves_2.png

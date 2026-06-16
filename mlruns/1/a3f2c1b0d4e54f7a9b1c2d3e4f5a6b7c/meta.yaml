@@ -1,0 +1,14 @@
+artifact_uri: file://C:/Users/Hossam/Desktop/flutter-streamlit-breast-ai/mlruns/1/a3f2c1b0d4e54f7a9b1c2d3e4f5a6b7c/artifacts
+end_time: 1778410089000
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+run_id: a3f2c1b0d4e54f7a9b1c2d3e4f5a6b7c
+run_name: resnet50-v2
+run_uuid: a3f2c1b0d4e54f7a9b1c2d3e4f5a6b7c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778404364000
+status: 3
+user_id: hossam

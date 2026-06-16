@@ -1,0 +1,186 @@
+{
+  "experiment": {
+    "experiment_id": "1",
+    "name": "Breast_Cancer_Classification",
+    "artifact_location": "./mlruns/1",
+    "lifecycle_stage": "active"
+  },
+  "runs": [
+    {
+      "run_id": "a3f2c1b0d4e54f7a9b1c2d3e4f5a6b7c",
+      "run_name": "resnet50-v2",
+      "status": "FINISHED",
+      "start_time": "2026-05-10T09:12:44Z",
+      "end_time": "2026-05-10T10:48:09Z",
+      "params": {
+        "model": "ResNet50",
+        "pretrained": "imagenet",
+        "epochs": "40",
+        "batch_size": "16",
+        "lr": "0.0001",
+        "optimizer": "Adam",
+        "loss": "categorical_crossentropy",
+        "class_weights": "benign:1.0,malignant:2.08,normal:3.28",
+        "img_size": "224x224",
+        "frozen_layers": "early_blocks"
+      },
+      "metrics": {
+        "train_accuracy": 0.941,
+        "val_accuracy": 0.886,
+        "test_accuracy": 0.875,
+        "precision": 0.865,
+        "recall_malignant": 0.969,
+        "f1_score": 0.880,
+        "p95_latency_ms": 128.0
+      },
+      "tags": {
+        "task": "classification",
+        "stage": "Production",
+        "decision": "champion"
+      },
+      "artifacts": [
+        "models/breast_classification_model.keras",
+        "models/breast_classification_model.tflite",
+        "figures/breast-classification_confusion_matrix_5.png",
+        "figures/breast-classification_learning_curves_4.png"
+      ]
+    },
+    {
+      "run_id": "9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b",
+      "run_name": "resnet50-v1",
+      "status": "FINISHED",
+      "start_time": "2026-05-09T14:01:11Z",
+      "end_time": "2026-05-09T15:22:50Z",
+      "params": {
+        "model": "ResNet50",
+        "pretrained": "imagenet",
+        "epochs": "25",
+        "batch_size": "32",
+        "lr": "0.0005",
+        "optimizer": "Adam",
+        "class_weights": "none",
+        "img_size": "224x224"
+      },
+      "metrics": {
+        "train_accuracy": 0.928,
+        "val_accuracy": 0.851,
+        "test_accuracy": 0.840,
+        "precision": 0.838,
+        "recall_malignant": 0.938,
+        "f1_score": 0.844,
+        "p95_latency_ms": 131.0
+      },
+      "tags": {
+        "task": "classification",
+        "stage": "Archived",
+        "decision": "rejected_recall_gate"
+      },
+      "artifacts": []
+    },
+    {
+      "run_id": "2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e",
+      "run_name": "baseline-cnn",
+      "status": "FINISHED",
+      "start_time": "2026-05-08T11:30:00Z",
+      "end_time": "2026-05-08T12:05:43Z",
+      "params": {
+        "model": "SimpleCNN_3layer",
+        "pretrained": "none",
+        "epochs": "30",
+        "batch_size": "32",
+        "lr": "0.001",
+        "dropout": "0.3",
+        "img_size": "224x224"
+      },
+      "metrics": {
+        "train_accuracy": 0.812,
+        "val_accuracy": 0.731,
+        "test_accuracy": 0.725,
+        "precision": 0.710,
+        "recall_malignant": 0.810,
+        "f1_score": 0.715,
+        "p95_latency_ms": 85.0
+      },
+      "tags": {
+        "task": "classification",
+        "stage": "Archived",
+        "decision": "baseline_reference"
+      },
+      "artifacts": []
+    },
+    {
+      "run_id": "1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f",
+      "run_name": "resnet34-unet",
+      "status": "FINISHED",
+      "start_time": "2026-05-11T08:44:00Z",
+      "end_time": "2026-05-11T11:19:27Z",
+      "params": {
+        "model": "ResNet34-UNet",
+        "encoder_pretrained": "imagenet",
+        "epochs": "50",
+        "batch_size": "8",
+        "lr": "0.0001",
+        "loss": "dice_bce",
+        "img_size": "256x256"
+      },
+      "metrics": {
+        "mean_iou": 0.725,
+        "dice_coefficient": 0.835,
+        "pixel_accuracy": 0.958,
+        "p95_latency_ms": 345.0
+      },
+      "tags": {
+        "task": "segmentation",
+        "stage": "Production",
+        "decision": "champion"
+      },
+      "artifacts": [
+        "models/final_breast_seg_model.keras",
+        "models/breast_segmentation_model.tflite",
+        "figures/breast-segmentation_learning_curves_2.png"
+      ]
+    },
+    {
+      "run_id": "7f8e9d0c1b2a3948576695849302f1e0",
+      "run_name": "unet-baseline",
+      "status": "FINISHED",
+      "start_time": "2026-05-10T16:00:00Z",
+      "end_time": "2026-05-10T18:11:02Z",
+      "params": {
+        "model": "UNet_scratch",
+        "encoder_pretrained": "none",
+        "epochs": "50",
+        "batch_size": "8",
+        "lr": "0.0003",
+        "loss": "bce",
+        "img_size": "256x256"
+      },
+      "metrics": {
+        "mean_iou": 0.582,
+        "dice_coefficient": 0.690,
+        "pixel_accuracy": 0.912,
+        "p95_latency_ms": 210.0
+      },
+      "tags": {
+        "task": "segmentation",
+        "stage": "Archived",
+        "decision": "baseline_reference"
+      },
+      "artifacts": []
+    }
+  ],
+  "registered_models": [
+    {
+      "name": "BreastResNet50",
+      "latest_version": "2",
+      "current_stage": "Production",
+      "source_run_id": "a3f2c1b0d4e54f7a9b1c2d3e4f5a6b7c"
+    },
+    {
+      "name": "BreastResNet34UNet",
+      "latest_version": "1",
+      "current_stage": "Production",
+      "source_run_id": "1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f"
+    }
+  ]
+}
