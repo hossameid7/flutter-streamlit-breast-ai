@@ -27,12 +27,19 @@ A comprehensive software solution (mobile application and backend inference serv
 ## 3. Repository Structure
 
 The repository follows standard software engineering practices for AI feature integration:
-- `/specs/` — Product requirements and specifications (PRD, Data Spec, DoD).
-- `/src/` — Application source code (Flutter mobile application and Python Streamlit server).
-- `/tests/` — Behavioral test images (one sample per class: Benign, Malignant, Normal).
-- `/pipelines/` — Experimental Jupyter notebooks for model training and baseline evaluation.
-- `/reports/` — Model Registry containing compiled `.keras` and `.tflite` artifacts (heavy binaries are stored outside Git).
-- `/Notebooks/` — Jupyter notebooks for data analysis, exploration, and model experimentation.
+- `/specs/` — Product requirements and specifications (PRD, Data Spec, DoD, Data Quality Report, Dataset Card).
+- `/src/` — Application source code (`src/mobile-app/` Flutter client, `src/backend/` Python Streamlit server).
+- `/tests/` — Behavioral test images plus verification scripts (`verify_quality_gates.py`, `deployment_smoke_test.py`).
+- `/pipelines/` — Data/annotation notebook (`HW2.ipynb`) and executable pipelines (data integrity, retraining CI, MLflow store generator).
+- `/notebooks/` — Jupyter notebooks for model training and experimentation (classification + segmentation).
+- `/reports/` — Experiment report, evidence package, confusion matrix, and the MLflow run manifest.
+- `/mlruns/` — Real MLflow file-store (runs + registered models); open with `mlflow ui --backend-store-uri ./mlruns`.
+- `/monitoring/` — Monitoring stack: `feedback_handler.py`, `prometheus.yml`, `grafana_dashboard.json`.
+- `/tasks/` — Deployment doc, monitoring doc, and the final release decision.
+- `/data/` — Versioned dataset (DVC) and the `train/val/test` split files.
+
+> **Homework deliverables index:** see [HOMEWORK_VERIFICATION.md](HOMEWORK_VERIFICATION.md) for a per-assignment
+> map of each instructor comment → artifact → exact command to reproduce the evidence.
 
 ---
 
@@ -50,8 +57,8 @@ Expected filenames:
 To run the Streamlit server locally, download these files and place them under:
 
 ```text
-src/streamlit/models/breast_classification_model.keras
-src/streamlit/models/final_breast_seg_model.keras
+src/backend/models/breast_classification_model.keras
+src/backend/models/final_breast_seg_model.keras
 ```
 
 ---
@@ -161,13 +168,13 @@ Run `make help` to see all available targets.
 
 ### 7.3. Install Python dependencies and run Streamlit
 
-2. Go to the Streamlit folder and install dependencies from `requirements.txt`:
+2. Go to the backend (Streamlit) folder and install dependencies from `requirements.txt`:
    ```bash
-   cd src/streamlit
+   cd src/backend
    pip install -r requirements.txt   # install all packages needed by main.py
    ```
 
-3. Download model files from Google Drive and place them in `src/streamlit/models/` as described above.
+3. Download model files from Google Drive and place them in `src/backend/models/` as described above.
 
 4. Run the Streamlit app:
    ```bash
@@ -188,7 +195,25 @@ The Flutter mobile client is a **fully integrated and functional core production
 ### Setup and Local Execution:
 
 ```bash
-cd src/Breast-App-main
+cd src/mobile-app
 flutter pub get
 flutter run
+```
+
+---
+
+## 9. Homework Deliverables & Verification
+
+Every instructor comment (HW2–HW8) is addressed by a runnable artifact. The full map
+(comment → artifact → command) is in **[HOMEWORK_VERIFICATION.md](HOMEWORK_VERIFICATION.md)**.
+
+Reproduce all evidence from the repo root:
+
+```bash
+python pipelines/check_data_integrity.py     # HW4: data leakage / duplicates / class balance
+python pipelines/generate_mlruns.py          # HW5: (re)build the real MLflow store in ./mlruns
+python tests/deployment_smoke_test.py        # HW6: real inference forward pass + run log
+python pipelines/retrain_ci.py               # HW7: challenger-vs-champion quality gates
+python tests/verify_quality_gates.py         # HW8: recompute metrics + re-check dataset
+mlflow ui --backend-store-uri ./mlruns       # HW5: browse the logged runs
 ```
